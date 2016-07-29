@@ -449,3 +449,16 @@ public class Example {
   }
 }
 Then the assignExpr produced doesn't have a null target
+
+
+Scenario: The method call has comments in its parameters
+Given a CompilationUnit
+When the following source is parsed:
+public class Example {
+  Object mAvailablePrimaryConnection;
+  public Example(String arg) {
+     ​mAvailablePrimaryConnection = openConnectionLocked(mConfiguration,
+        true /*primaryConnection*/); // comment
+  }
+}
+Then no errors are reported
